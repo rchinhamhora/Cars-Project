@@ -1,10 +1,9 @@
-  
 package controller;
 
-import java.util.List;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,40 +11,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Manufacturer;
 import model.Vehicle;
 
 /**
- * Servlet implementation class AddVehicleServlet
+ * Servlet implementation class EditItemServlet
  */
 /**
  * Rumbi Chinhamhora rchinhamhora
  * CIS 175 - Spring 2021
- * Mar 7, 2021
+ * Mar 10, 2021
  */
-
-@WebServlet("/addVehicle")
-public class AddVehicleServlet extends HttpServlet {
+@WebServlet("/editVehicle")
+public class EditVehicleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private VehicleHelper vh;
-    private ManufacturerHelper mh;
-    
+       
+	VehicleHelper vh;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddVehicleServlet() {
+    public EditVehicleServlet() {
         super();
 		vh = new VehicleHelper();
-		mh = new ManufacturerHelper();
     }
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int manId = Integer.parseInt(request.getParameter("make").trim());
-		Manufacturer manufacturer = mh.findById(manId);
 		String model = request.getParameter("model").trim();
 		String date = request.getParameter("date").trim().replace('/', '-');
 		LocalDate manDate = LocalDate.parse(date);
@@ -63,9 +55,18 @@ public class AddVehicleServlet extends HttpServlet {
 		} catch (Exception e) {
 			mpg = new BigDecimal(0.0);
 		}
+			
+		int vinId = Integer.parseInt(request.getParameter("vinId").trim());
+		Vehicle vehicle = vh.findById(vinId);
 		
-		Vehicle vehicle = new Vehicle(model, manDate, color, trans, seats, mpg, manufacturer);
-		vh.save(vehicle);
+		vehicle.setModel(model);
+		vehicle.setManDate(manDate);
+		vehicle.setColor(color);
+		vehicle.setTrans(trans);
+		vehicle.setSeats(seats);
+		vehicle.setMpg(mpg);
+		System.out.println("Update " + vehicle);
+		vh.update(vehicle);
 		
 		List<Vehicle> vehicles = vh.findAll();
 		request.setAttribute("vehicles", vehicles);
@@ -73,12 +74,5 @@ public class AddVehicleServlet extends HttpServlet {
 		if (vehicles.isEmpty()) path = "/index.html";
 		getServletContext().getRequestDispatcher(path).forward(request, response);
 	}
-	/**
-	 * @see HttpServlet#doGett(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Manufacturer> manufacturers = mh.findAll();
-		request.setAttribute("mfgrs", manufacturers);
-		getServletContext().getRequestDispatcher("/add-vehicle.jsp").forward(request, response);
-	}
+
 }

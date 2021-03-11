@@ -44,4 +44,8 @@ public class ManufacturerHelper {
 		
 	}
 
+	public Manufacturer findById(int manId) {
+		return null;
+	}
+
 }

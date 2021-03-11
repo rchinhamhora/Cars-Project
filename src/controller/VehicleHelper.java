@@ -9,7 +9,7 @@ import model.Vehicle;
 /**
  * Rumbi Chinhamhora rchinhamhora
  * CIS 175 - Spring 2021
- * Mar 7, 2021
+ * Mar 6, 2021
  */
 public class VehicleHelper {
 
@@ -20,6 +20,14 @@ public class VehicleHelper {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(v);
+		em.getTransaction().commit();
+		em.close();
+	}
+
+	public void update(Vehicle v) {
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+		em.merge(v);
 		em.getTransaction().commit();
 		em.close();
 	}
@@ -42,7 +50,7 @@ public class VehicleHelper {
 	public void deleteVehicle(int id) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		Vehicle vehicle = findById(id);
+		Vehicle vehicle = em.find(Vehicle.class, id);
 		em.remove(vehicle);
 		em.getTransaction().commit();
 		em.close();

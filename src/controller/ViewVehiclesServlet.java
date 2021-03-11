@@ -1,7 +1,7 @@
+  
 package controller;
 
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ import model.Vehicle;
 /**
  * Rumbi Chinhamhora rchinhamhora
  * CIS 175 - Spring 2021
- * Mar 8, 2021
+ * Mar 6, 2021
  */
 @WebServlet("/viewVehicles")
 public class ViewVehiclesServlet extends HttpServlet {
