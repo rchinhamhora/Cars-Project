@@ -8,13 +8,14 @@
 <title>Countries</title>
 </head>
 <body>
+	<h1>Countries</h1>
     <form action="countriesNavigationServlet">
     <table>
     	<tr>
         	<c:forEach items="${requestScope.allCountries}" var="currentcountry">
 				<tr>
 			 		<td><input type="radio" name="id" value="${currentcountry.countryId}"></td>
-		 			<td> Country Name: ${currentcountry.countryName}</td>
+		 			<td>${currentcountry.countryName}</td>
 	            </tr>
         	</c:forEach>
     	</tr>

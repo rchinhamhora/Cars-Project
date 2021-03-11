@@ -2,7 +2,7 @@ import controller.CountryHelper;
 import model.Country;
 
 /**
- * @author Daniel - dcdelima
+ * @author Daniel De Lima - dcdelima
  * CIS 175 - Spring 2021
  * Mar 8, 2021
  */
@@ -16,8 +16,8 @@ import model.Country;
 public class CountryTester {
 
 	public static void main(String[] args) {
-		CountryHelper ch = new CountryHelper();
-		Country country = new Country("Spain");
-		ch.save(country);
+//		CountryHelper ch = new CountryHelper();
+//		Country country = new Country("Spain");
+//		ch.save(country);
 	}
 }

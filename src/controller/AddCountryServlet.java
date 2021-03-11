@@ -1,5 +1,5 @@
 /**
- * Daniel De Lima
+ * @author Daniel De Lima - dcdelima
  * CIS 175 - Spring 2021
  * Mar 8, 2021
  */
@@ -26,7 +26,6 @@ public class AddCountryServlet extends HttpServlet {
      */
     public AddCountryServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -34,18 +33,19 @@ public class AddCountryServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		/*Creating instance of helper method*/
+		CountryHelper dao = new CountryHelper();
+		
+		/*Getting value of request and assigning to a variable*/
 		String countryName = request.getParameter("countryName");
 		
+		/*Creating instance of model class with the request*/
 		Country country = new Country(countryName);
-		CountryHelper dao = new CountryHelper();
+		
+		//Persisting the country object
 		dao.save(country);
 		
 		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 		
 	}
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 }
