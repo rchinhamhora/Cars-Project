@@ -7,23 +7,27 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Manufacturer;
+
 /**
- * Servlet implementation class ViewAllCountriesServlet
+ * Servlet implementation class ViewAllManufacturersServlet
  */
-@WebServlet("/viewCountries")
-public class ViewAllCountriesServlet extends HttpServlet {
+@WebServlet("/viewManufacturers")
+public class ViewAllManufacturersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewAllCountriesServlet() {
+    public ViewAllManufacturersServlet() {
         super();
     }
 
@@ -31,33 +35,33 @@ public class ViewAllCountriesServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		/*Creating instance of helper class*/
-		CountryHelper dao = new CountryHelper();
 		
-		/*The JSP that displays the countries*/
-		String path = "/countries-list.jsp";
+		/*Creating instance of helper class*/
+		ManufacturerHelper dao = new ManufacturerHelper();
+		
+		/*The JSP that displays the list of manufacturers*/
+		String path = "/manufacturers-list.jsp";
+		
+		/*Getting all manufacturers in the database*/
+		List<Manufacturer> manList = dao.findAll();
 		
 		/*Saving object in session*/
-		request.setAttribute("allCountries", dao.findAll());
+		request.setAttribute("allManufacturers", manList);
 		
-		/* Redirects the user to the main page in case
-		 * there are no countries in the database.
-		 */
-		if(dao.findAll().isEmpty()) {
-			path = "/index.html";
+		// in case there aren't any, display nothing
+		if(manList.isEmpty()) {
+			request.setAttribute("allManufacturers", " ");
 		}
 		
 		/*Sending the request to the JSP path*/
 		getServletContext().getRequestDispatcher(path).forward(request, response);
-	
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
