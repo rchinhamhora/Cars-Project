@@ -1,4 +1,4 @@
-### Vehicles Partner project - CIS 175
+### Cars Partner project - CIS 175
 
 - This is a partner project with the collaboration of [Rumbi Chinhamhora]
 (https://github.com/rchinhamhora) and [Daniel DeLima](https://github.com/dndanli)
