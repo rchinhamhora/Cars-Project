@@ -56,9 +56,6 @@ public class AddManufacturersServlet extends HttpServlet {
 		/*Creating new instance of model class with saved requests*/
 		Manufacturer manufacturer = new Manufacturer(country, manufacturerName);
 		
-		List<Country> clist = ch.findAll();
-		request.setAttribute("clist", clist);
-		
 		// persisting manufacturer to database
 		if(countriesList.contains(country)) {
 			dao.save(manufacturer);	
