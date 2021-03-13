@@ -30,8 +30,8 @@ public class CarsTester {
 		manufacturers.forEach(System.out::println);
 		
 		VehicleHelper vh = new VehicleHelper();
-//		Vehicle vehicle = new Vehicle("Santa Fe", LocalDate.now(), "Red", "Auto", 7,
-//				new BigDecimal(41.0), manufacturers.get(8));
+//		Vehicle vehicle = new Vehicle("Explorer", LocalDate.now(), "Red", "Auto", 7,
+//				new BigDecimal(19.0), manufacturers.get(1));
 //		vh.save(vehicle);
 		List<Vehicle> vehicles = vh.findAll();
 		vehicles.forEach(System.out::println);

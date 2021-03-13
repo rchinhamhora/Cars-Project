@@ -6,27 +6,23 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add a manufacturer</title>
+<title>Add Manufacturer</title>
+<link href="styles.css" rel="stylesheet" />
 </head>
-<link rel ="stylesheet" href ="https://unpkg.com/bootstrap@4.5.0/dist/css/bootstrap.min.css" />
 <body>
-
+	<h2>Add Manufacturer</h2>
     <form action="addManufacturersServlet" method="POST">
     
-        <h2>Insert manufacturer details</h2>
-        <label for="mfname">Manufacturer name:</label>
-        <input type="text"  class="form-control" id="mfname" name="manufacturerName">
+        <label>Manufacturer Name</label><br/>
+        <input type="text" name="manufacturerName"><br/>
         
-        <label for="cname">Country name:</label>
-        <input type="text" class="form-control" id="cname" name="country">
+        <label>Manufacturer Country</label><br/>
+        <input type="text" name="country"><br/>
         
-        <br>
-        <input type="submit" class="btn btn-secondary" name="Add Manufacturer" value ="Add Manufacturer">
-        
+        <br/>
+        <input type="submit" name="Add Manufacturer" value ="Add Manufacturer">
     </form>
-    
-    <br>
-    
+    <br/>
     <a href="index.html">Go to main menu</a>
     
 </body>

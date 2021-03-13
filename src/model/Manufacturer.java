@@ -17,7 +17,7 @@ public class Manufacturer {
 	@Column(name="MANUFACTURER_NAME")
 	private String manufacturerName;
 
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="COUNTRY_ID")
 	private Country country;
 	

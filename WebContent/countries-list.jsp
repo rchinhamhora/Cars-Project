@@ -5,23 +5,28 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Countries</title>
+<title>Country List</title>
+<link href="styles.css" rel="stylesheet" />
 </head>
-<link rel ="stylesheet" href ="https://unpkg.com/bootstrap@4.5.0/dist/css/bootstrap.min.css" />
 <body>
+	<h2>Country List</h2>
     <form action="countriesNavigationServlet">
-    <table border ="1" class="table table-striped table-bordered">
-    
-    	<tr class ="thead-dark">
-    		<th>Countries</th>
-    	</tr>
+    <table>
+      <thead>
+         <tr>
+      		<th>Country</th>
+      	 </tr>
+      </thead>
+      <tbody>
         	<c:forEach items="${requestScope.allCountries}" var="currentcountry">
 				<tr>
 		 			<td>${currentcountry.countryName}</td>
 	            </tr>
         	</c:forEach>
+      </tbody>
     </table>
     </form>
+    <br/>
     <a href="index.html">Go to main menu</a>
 </body>
 </html>

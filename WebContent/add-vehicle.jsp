@@ -5,12 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Add Vehicle</title>
+<link href="styles.css" rel="stylesheet" />
 </head>
 <body>
-<h2>Add Vehicle</h2>
+	<h2>Add Vehicle</h2>
 	<form action="addVehicle" method="post">
 		<label>Make</label>
-	    	<select name="make" size="2" required>
+	    	<select class="make" name="make" size="2" required>
 			<c:forEach items="${requestScope.mfgrs}" var="mfgr">
 				<option value="${mfgr.manId}">${mfgr.manufacturerName}</option>
 			</c:forEach>
@@ -27,7 +28,7 @@
 		<input class="seats" type="text" name="seats"><br/>
 		<label>MPG</label><br/>
 		<input class="mpg"   type="text" name="mpg"><br/>
-	
+		<br/>
 		<input type="submit" value="Add Vehicle">
 	</form>
 	<br/>

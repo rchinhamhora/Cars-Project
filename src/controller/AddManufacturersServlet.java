@@ -7,8 +7,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,24 +43,16 @@ public class AddManufacturersServlet extends HttpServlet {
 		
 		/*Defining column components and saving to session*/
 		String manufacturerName = request.getParameter("manufacturerName");
-		String countryId = request.getParameter("country");
+		String countryName = request.getParameter("country");
 		
-		//Creating new country
-		Country country = new Country(countryId);
-		
-		//Getting list of all countries in the table
-		List<Country> countriesList = ch.findAll();
+		Country country = ch.findCountry(countryName);
 		
 		/*Creating new instance of model class with saved requests*/
 		Manufacturer manufacturer = new Manufacturer(country, manufacturerName);
 		
 		// persisting manufacturer to database
-		if(countriesList.contains(country)) {
-			dao.save(manufacturer);	
-		}else {
-			ch.save(country);
-			dao.save(manufacturer);
-		}
+		dao.save(manufacturer);
+		
 		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 		
 	}
