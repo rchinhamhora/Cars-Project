@@ -45,7 +45,10 @@ public class ManufacturerHelper {
 	}
 
 	public Manufacturer findById(int manId) {
-		return null;
+		EntityManager em = emfactory.createEntityManager();
+		Manufacturer mfgr = em.find(Manufacturer.class, manId);
+		em.close();
+		return mfgr;
 	}
 
 }
